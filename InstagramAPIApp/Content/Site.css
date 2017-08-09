@@ -21,3 +21,26 @@ select,
 textarea {
     max-width: 280px;
 }
+
+article.card-panel {
+    position: relative;
+    width: 360px;
+    margin: 20px;
+    padding: 20px;
+    transition: box-shadow 300ms;
+}
+
+@media screen and (max-width: 600px) {
+    .content {
+        width: 100%;
+    }
+
+    article.card-panel {
+        width: 100% !important;
+        margin: 20px 0;
+    }
+}
+
+.content {
+    margin: 0 auto;
+}

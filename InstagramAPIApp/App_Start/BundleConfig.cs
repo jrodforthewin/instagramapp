@@ -28,10 +28,12 @@ namespace InstagramAPIApp
             //          "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
-                      "~/Scripts/materialize/materialize.js"));
+                      "~/Scripts/materialize/materialize.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/materialize/css/materialize.css",
+                      
                       "~/Content/site.css"));
         }
     }

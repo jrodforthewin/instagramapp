@@ -98,7 +98,7 @@ namespace InstagramAPIApp.Controllers
                         Likes = media.Likes,
                         Link = media.Link,
                         Location = media.Location,
-                        Tags = media.Tags,
+                        Tags =  media.Tags,
                         Type = media.Type,
                         User = media.User,
                         UserHasLiked = media.UserHasLiked,

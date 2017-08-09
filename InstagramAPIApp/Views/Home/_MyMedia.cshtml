@@ -1,58 +1,100 @@
 ﻿@model IEnumerable<InstagramAPIApp.Models.Media>
 
-<p>
-    @*@Html.ActionLink("Create New", "Create")*@
-</p>
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserHasLiked)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Link)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Filter)
-        </th>
-        <th></th>
-    </tr>*@
+<div class="row">
+    @{ 
+        var mostLikes = (from c in Model
+                         orderby c.Likes.Count descending
+                         select c).First();
+        var mostComments = (from c in Model
+                            orderby c.Comments.Count descending
+                            select c).First();
+        var leastLikes = (from c in Model
+                         orderby c.Likes.Count descending
+                         select c).First();
+        var leastComments = (from c in Model
+                            orderby c.Comments.Count descending
+                            select c).First();
 
-@*@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserHasLiked)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Link)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Filter)
-            </td>
-            <td>
-
-            </td>
-        </tr>
     }
-
-    </table>*@
+    <div class="col s12 m4 l3">
+        <div class="card">
+            <div class="card-image">
+                <img src=@mostLikes.Images.Thumbnail.Url>
+            </div>
+            <div class="card-title">
+                Most Likes
+            </div>
+            <div class="card-content">
+                <p>
+                    @mostLikes.Caption.Text
+                </p>
+            </div>
+            <div class="card-action">
+                <div class="chip">Likes: @mostLikes.Likes.Count.ToString()</div>
+                <div class="chip">Comments: @mostLikes.Comments.Count.ToString()</div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m4 l3">
+        <div class="card">
+            <div class="card-image">
+                <img src=@mostComments.Images.Thumbnail.Url>
+            </div>
+            <div class="card-title">
+                Most Comments
+            </div>
+            <div class="card-content">
+                <p>
+                    @mostComments.Caption.Text
+                </p>
+            </div>
+            <div class="card-action">
+                <div class="chip">Likes: @mostComments.Likes.Count.ToString()</div>
+                <div class="chip">Comments: @mostComments.Comments.Count.ToString()</div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col s12 m4 l3">
-            <img class="materialboxed" data-caption=@item.Caption width="100%" src=@item.Images.Thumbnail.Url>
-        </div>
+            <div class="col s12 m4 l3">
+                <div class="card">
+                    <div class="card-image">
+                        <img src=@item.Images.Thumbnail.Url>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                           @item.Caption.Text
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <div class="chip">Likes: @item.Likes.Count.ToString()</div>
+                        <div class="chip">Comments: @item.Comments.Count.ToString()</div>
+                    </div>
+                </div>
+            </div>
+
+
+        @*<div class="col s6">
+            <div class="col s6">
+                <img class="materialboxed" data-caption=@item.Caption width="100%" src=@item.Images.Thumbnail.Url>
+            </div>
+            <div class="col s6">
+                <div >
+                    <div class="chip">Likes: @item.Likes.Count.ToString()</div>
+                    <div class="chip">Comments: @item.Comments.Count.ToString()</div>
+                    <p><strong>@item.Caption.Text</strong></p>
+                    <p>
+                    @foreach (var tag in item.Tags)
+                    {
+                        @tag
+                    }
+                    </p>
+                    
+                </div>
+            </div>
+        </div>*@
     }
 </div>
 @section scripts{
