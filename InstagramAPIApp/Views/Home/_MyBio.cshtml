@@ -1,0 +1,19 @@
+﻿@model InstagramAPIApp.Models.Bio
+
+<div class="col s12 m6">
+<img class="materialboxed" data-caption="A picture of a way with a group of trees in a park" width="250" src=@Html.DisplayFor(model => model.ProfilePicture)>
+    </div>
+<div class="col s12 m6">
+    <p class="flow-text">@Html.DisplayFor(model => model.Username)
+        <div class="chip">
+            Following: @Html.DisplayFor(model => model.Counts.Follows)
+        </div>
+        <div class="chip">
+            Followers: @Html.DisplayFor(model => model.Counts.FollowedBy)
+        </div>
+    </p>
+    <blockquote>
+        @Html.DisplayFor(model => model.Bio)
+    </blockquote>
+</div>
+

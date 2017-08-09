@@ -1,0 +1,62 @@
+﻿@model IEnumerable<InstagramAPIApp.Models.Media>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserHasLiked)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Link)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Filter)
+        </th>
+        <th></th>
+    </tr>*@
+
+@*@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserHasLiked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Link)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filter)
+            </td>
+            <td>
+
+            </td>
+        </tr>
+    }
+
+    </table>*@
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col s12 m4 l3">
+            <img class="materialboxed" data-caption=@item.Caption width="100%" src=@item.Images.Thumbnail.Url>
+        </div>
+    }
+</div>
+@section scripts{
+<script>
+        $('.materialboxed').materialbox();
+</script>
+}
