@@ -1,10 +1,8 @@
 ﻿@{
     ViewBag.Title = "Login";
 }
-<div class="container">
-    <div class="card-panel light-green white-text" >
-        <h1 class="center">Welcome to Manansssta</h1>
-        <p class="flow-text center">Please login</p>
-        <p>@Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "waves-effect waves-light btn-large center" })</p>
-    </div>
-</div>
+
+<h1 class="md-display-3">Welcome to Frogroid</h1>
+<h3 class="md-subhead">To gain access to your Instagram account, next level style, grant us account to your account</h3>
+<md-button class="md-accent md-raised" href="@Url.Action("Login","Home")">Grant access</md-button>
+

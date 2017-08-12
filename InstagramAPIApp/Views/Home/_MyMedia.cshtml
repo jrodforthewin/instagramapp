@@ -1,7 +1,54 @@
 ﻿@model IEnumerable<InstagramAPIApp.Models.Media>
+@*<script>
+    myMedia = @Html.Raw(Json.Encode(Model));
+</script>*@
+<md-grid-list md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
+              md-row-height-gt-md="1:1" md-row-height="4:3"
+              md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+    <md-grid-tile ng-repeat="tile in  GridCtrl.colorTiles"
+                  ng-style="{
+              'background': tile.color
+            }"
+                  md-colspan-gt-sm="{{tile.colspan}}"
+                  md-rowspan-gt-sm="{{tile.rowspan}}">
+    </md-grid-tile>
+</md-grid-list>
 
-<div class="row">
-    @{ 
+@*<md-grid-list md-cols="4" md-row-height="fit" style="height: 400px;">
+        @foreach (var item in Model)
+        {
+
+
+            <md-grid-tile>
+                <md-grid-tile>
+                    <md-grid-tile-header>
+                        jarrod
+                    </md-grid-tile-header>
+                </md-grid-tile>
+
+                @ *<md-card>
+                    <img src=@item.Images.Thumbnail.Url class="md-card-image" alt="@item.Caption.Text">
+                    <md-card-content>
+                        <h2>Likes: @item.Likes.Count.ToString() Comments: @item.Comments.Count.ToString()</h2>
+                        <p>@item.Caption.Text</p>
+                    </md-card-content>
+                    <md-card-footer>
+                        Card footer
+                    </md-card-footer>
+                </md-card> * @
+            </md-grid-tile>
+
+        }
+    </md-grid-list>*@
+
+
+
+
+
+
+
+@*<div class="row">
+        @{
         var mostLikes = (from c in Model
                          orderby c.Likes.Count descending
                          select c).First();
@@ -9,96 +56,91 @@
                             orderby c.Comments.Count descending
                             select c).First();
         var leastLikes = (from c in Model
-                         orderby c.Likes.Count descending
-                         select c).First();
+                          orderby c.Likes.Count descending
+                          select c).First();
         var leastComments = (from c in Model
-                            orderby c.Comments.Count descending
-                            select c).First();
+                             orderby c.Comments.Count descending
+                             select c).First();
 
-    }
-    <div class="col s12 m4 l3">
-        <div class="card">
-            <div class="card-image">
-                <img src=@mostLikes.Images.Thumbnail.Url>
-            </div>
-            <div class="card-title">
-                Most Likes
-            </div>
-            <div class="card-content">
-                <p>
-                    @mostLikes.Caption.Text
-                </p>
-            </div>
-            <div class="card-action">
-                <div class="chip">Likes: @mostLikes.Likes.Count.ToString()</div>
-                <div class="chip">Comments: @mostLikes.Comments.Count.ToString()</div>
-            </div>
-        </div>
-    </div>
-    <div class="col s12 m4 l3">
-        <div class="card">
-            <div class="card-image">
-                <img src=@mostComments.Images.Thumbnail.Url>
-            </div>
-            <div class="card-title">
-                Most Comments
-            </div>
-            <div class="card-content">
-                <p>
-                    @mostComments.Caption.Text
-                </p>
-            </div>
-            <div class="card-action">
-                <div class="chip">Likes: @mostComments.Likes.Count.ToString()</div>
-                <div class="chip">Comments: @mostComments.Comments.Count.ToString()</div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    @foreach (var item in Model)
-    {
-            <div class="col s12 m4 l3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src=@item.Images.Thumbnail.Url>
-                    </div>
-                    <div class="card-content">
-                        <p>
-                           @item.Caption.Text
-                        </p>
-                    </div>
-                    <div class="card-action">
-                        <div class="chip">Likes: @item.Likes.Count.ToString()</div>
-                        <div class="chip">Comments: @item.Comments.Count.ToString()</div>
-                    </div>
+        }
+        <div class="col s12 m4 l3">
+            <div class="card">
+                <div class="card-image">
+                    <img src=@mostLikes.Images.Thumbnail.Url>
+                </div>
+                <div class="card-title">
+                    Most Likes
+                </div>
+                <div class="card-content">
+                    <p>
+                        @mostLikes.Caption.Text
+                    </p>
+                </div>
+                <div class="card-action">
+                    <div class="chip">Likes: @mostLikes.Likes.Count.ToString()</div>
+                    <div class="chip">Comments: @mostLikes.Comments.Count.ToString()</div>
                 </div>
             </div>
+        </div>
+        <div class="col s12 m4 l3">
+            <div class="card">
+                <div class="card-image">
+                    <img src=@mostComments.Images.Thumbnail.Url>
+                </div>
+                <div class="card-title">
+                    Most Comments
+                </div>
+                <div class="card-content">
+                    <p>
+                        @mostComments.Caption.Text
+                    </p>
+                </div>
+                <div class="card-action">
+                    <div class="chip">Likes: @mostComments.Likes.Count.ToString()</div>
+                    <div class="chip">Comments: @mostComments.Comments.Count.ToString()</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+        <div class="col s12 m4 l3">
+            <div class="card">
+                <div class="card-image">
+                    <img src=@item.Images.Thumbnail.Url>
+                </div>
+                <div class="card-content">
+                    <p>
+                        @item.Caption.Text
+                    </p>
+                </div>
+                <div class="card-action">
+                    <div class="chip">Likes: @item.Likes.Count.ToString()</div>
+                    <div class="chip">Comments: @item.Comments.Count.ToString()</div>
+                </div>
+            </div>
+        </div>
 
 
         @*<div class="col s6">
-            <div class="col s6">
-                <img class="materialboxed" data-caption=@item.Caption width="100%" src=@item.Images.Thumbnail.Url>
-            </div>
-            <div class="col s6">
-                <div >
-                    <div class="chip">Likes: @item.Likes.Count.ToString()</div>
-                    <div class="chip">Comments: @item.Comments.Count.ToString()</div>
-                    <p><strong>@item.Caption.Text</strong></p>
-                    <p>
-                    @foreach (var tag in item.Tags)
-                    {
-                        @tag
-                    }
-                    </p>
-                    
+                <div class="col s6">
+                    <img class="materialboxed" data-caption=@item.Caption width="100%" src=@item.Images.Thumbnail.Url>
+                </div>
+                <div class="col s6">
+                    <div >
+                        <div class="chip">Likes: @item.Likes.Count.ToString()</div>
+                        <div class="chip">Comments: @item.Comments.Count.ToString()</div>
+                        <p><strong>@item.Caption.Text</strong></p>
+                        <p>
+                        @foreach (var tag in item.Tags)
+                        {
+                            @tag
+                        }
+                        </p>
+
+                    </div>
                 </div>
             </div>
-        </div>*@
-    }
-</div>
-@section scripts{
-<script>
-        $('.materialboxed').materialbox();
-</script>
-}
+        }
+    </div>*@

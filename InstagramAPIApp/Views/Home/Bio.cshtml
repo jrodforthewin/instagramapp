@@ -1,108 +1,65 @@
-﻿@*@model InstagramAPIApp.Models.Bio*@
+﻿@model InstagramAPIApp.Models.UserMediaAndBio
 
 @{
     ViewBag.Title = "Bio";
 }
 
-<div class="row">
+<script>
+    userBioAndMedia = @Html.Raw(Json.Encode(Model));
+</script>
+
+@*<div flex>
     <p id="yourContainer">
-        <div class="partialContents" data-url="/home/_mybio">
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
+        <div id="partialContentsx" data-url="/home/_mybio">
+            <spinner></spinner>
         </div>
-    </p>
+</div>*@
+
+<div flex layout-fill>
+    testes please<h1>shutup</h1>
+    <div layout="column" layout-fill>
+        <div ng-app="myApp">
+            <div ng-controller="GridCtrl as appCtrl">
+                @*<div id="partialContents" data-url="/home/_mymedia">
+                    </div>*@
+                <md-grid-list md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
+                              md-row-height-gt-md="1:1" md-row-height="4:3"
+                              md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+                    <md-grid-tile ng-repeat="tile in appCtrl.colorTiles"
+                                  ng-style="{
+              'background': tile.color
+            }"
+                                  md-colspan-gt-sm="{{tile.colspan}}"
+                                  md-rowspan-gt-sm="{{tile.rowspan}}">
+                        <img src="{{tile.url}}" class="md-card-image" alt="{{tile.altText}}">
+                    </md-grid-tile>
+
+                    @*<md-grid-tile ng-repeat="tile in appCtrl.colorTiles" ng-style="{
+              'background': tile.color
+            }"
+                                  md-colspan-gt-sm="{{tile.colspan}}"
+                                  md-rowspan-gt-sm="{{tile.rowspan}}">
+                        <img src={{tile.url}} class="md-card-image" alt={{tile.altText}}>
+                    </md-grid-tile>*@
+                </md-grid-list>
+            </div>
+
+        </div>
+    </div>
 </div>
 
-<div class="row">
-    <p id="yourContainer">
-        <div class="partialContents" data-url="/home/_mymedia">
-            <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-yellow">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-
-                <div class="spinner-layer spinner-green">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div><div class="gap-patch">
-                        <div class="circle"></div>
-                    </div><div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
+@*<div flex>
+        <p id="yourContainer">
+            <div class="partialContents" data-url="/home/_mymedia">
+                <spinner></spinner>
             </div>
-        </div>
-    </p>
-</div>
+        </p>
+    </div>*@
 @section scripts{
     <script>
+
         $(document).ready(function (e) {
-            $(".partialContents").each(function (index, item) {
+            $("#partialContents").each(function (index, item) {
                 var url = $(item).data("url");
                 if (url && url.length > 0) {
                     $(item).load(url);

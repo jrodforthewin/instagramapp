@@ -5,31 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/angularjs")
+    @Scripts.Render("~/bundles/angularFramework")
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper light-green">
-            @Html.ActionLink("Manansssta", "Index", "Home", new { area = "" }, new { @class = "brand-logo center" })
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                <li>@Html.ActionLink("Login", "Login", "Home")</li>
-            </ul>
+    @*<div ng-app="myApp">
+        <div ng-controller="GridCtrl as appCtrl">
+                <md-grid-list md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
+                              md-row-height-gt-md="1:1" md-row-height="4:3"
+                              md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+                    <md-grid-tile ng-repeat="tile in appCtrl.colorTiles"
+                                  ng-style="{
+            'background': tile.color
+          }"
+                                  md-colspan-gt-sm="{{tile.colspan}}"
+                                  md-rowspan-gt-sm="{{tile.rowspan}}">
+                    </md-grid-tile>
+                </md-grid-list>
         </div>
-    </nav>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        </div>*@
+    
+    <div ng-app="myApp" ng-controller="myCtrl" ng-cloak>
+        <div layout="column">
+            <md-toolbar>
+
+                <div class="md-toolbar-tools">
+                    <h2 md-truncate flex>Frogroid</h2>
+                </div>
+
+            </md-toolbar>
+        </div>
+        <section layout="row" flex>
+
+            <md-sidenav class="md-sidenav-left"
+                        md-component-id="left"
+                        md-is-locked-open="$mdMedia('gt-md')"
+                        md-whiteframe="4">
+
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools">Sidenav Left</h1>
+                </md-toolbar>
+                <md-content layout-padding ng-controller="LeftCtrl">
+                    <md-button ng-click="close()" class="md-primary" hide-gt-md>
+                        Close Sidenav Left
+                    </md-button>
+                    <p hide show-gt-md>
+                        <md-button>
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </md-button>
+                        <md-button>
+                            @Html.ActionLink("About", "About", "Home")
+                        </md-button>
+                        <md-button>
+                            @Html.ActionLink("Contact", "Contact", "Home")
+                        </md-button>
+                        <md-button href="@Url.Action("Login", "Home")">
+                            Login
+                        </md-button>
+                    </p>
+                </md-content>
+
+            </md-sidenav>
+            <md-content flex layout-padding>
+
+                <div layout="column" layout-align="top center">
+                    <div>
+                        <md-button ng-click="toggleLeft()"
+                                   class="md-primary" hide-gt-md>
+                            Toggle left
+                        </md-button>
+                    </div>
+
+                    @*<div>
+                        <md-button ng-click="toggleRight()"
+                                   ng-hide="isOpenRight()"
+                                   class="md-primary">
+                            Toggle right
+                        </md-button>
+
+                    </div>*@
+                    @RenderBody()
+
+
+
+                </div>
+
+                <div flex></div>
+                
+
+            </md-content>
+
+            @*<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+
+                <md-toolbar class="md-theme-light">
+                    <h1 class="md-toolbar-tools">Sidenav Right</h1>
+                </md-toolbar>
+                <md-content ng-controller="RightCtrl" layout-padding>
+                    <form>
+                        <md-input-container>
+                            <label for="testInput">Test input</label>
+                            <input type="text" id="testInput"
+                                   ng-model="data" md-autofocus>
+                        </md-input-container>
+                    </form>
+                    <md-button ng-click="close()" class="md-primary">
+                        Close Sidenav Right
+                    </md-button>
+                </md-content>
+
+            </md-sidenav>*@
+
+        </section>
+
+        @*<div layout="column">
+                <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="$mdMedia('min-width: 1024px')">
+                    <md-button>
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </md-button>
+                    <md-button>
+                        @Html.ActionLink("About", "About", "Home")
+                    </md-button>
+                    <md-button>
+                        @Html.ActionLink("Contact", "Contact", "Home")
+                    </md-button>
+                    <md-button>
+                        @Html.ActionLink("Login", "Login", "Home")
+                    </md-button>
+                </md-sidenav>
+
+                <md-content>
+                    Center Content
+                    <md-button ng-click="openLeftMenu()">
+                        Open Left Menu
+                    </md-button>
+                </md-content>
+
+
+            </div>*@
+
+        @*<nav>
+                <div class="nav-wrapper light-green">
+                    @Html.ActionLink("Frogroid", "Index", "Home", new { area = "" }, new { @class = "brand-logo center" })
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                    </ul>
+                </div>
+            </nav>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/materialize")
     @RenderSection("scripts", required: false)
 </body>
 </html>

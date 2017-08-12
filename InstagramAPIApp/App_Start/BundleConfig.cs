@@ -27,14 +27,27 @@ namespace InstagramAPIApp
             //          "~/Content/bootstrap.css",
             //          "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
-                      "~/Scripts/materialize/materialize.js"
+            //bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
+            //          "~/Scripts/materialize/materialize.js"
+            //          ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/angularjs").Include(
+                      "~/Scripts/angular.js"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/angularFramework").Include(
+                      "~/Framework/maincontroller.js",
+                      "~/Scripts/angular-animate.js",
+                      "~/Scripts/angular-aria.js",
+                      "~/Scripts/angular-messages.js",
+                      "~/Scripts/angular-material.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/materialize/css/materialize.css",
-                      
-                      "~/Content/site.css"));
+                      "~/Content/angular-material.css"
+                      //,
+                      //"~/Content/site.css"
+                      ));
         }
     }
 }

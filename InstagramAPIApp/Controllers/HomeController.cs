@@ -32,15 +32,20 @@ namespace InstagramAPIApp.Controllers
             return View();
         }
 
-        public ActionResult Bio()
+        public async Task<ActionResult> Bio()
         {
             //var bio = new Bio();
-
+            var userBioAndMedia = new UserMediaAndBio();
             if (Session["InstaSharp.AuthInfo"] == null)
             {
                 ViewBag.Message = "Please log in";
             }
-            return View();
+            else
+            {
+                userBioAndMedia.UserMedia = await GetMedia();
+                userBioAndMedia.UserBio = await GetBio();
+            }
+            return View(userBioAndMedia);
         }
 
         public async Task<ActionResult> _MyBio()
@@ -53,22 +58,28 @@ namespace InstagramAPIApp.Controllers
             }
             else
             {
-                var auth = (OAuthResponse)Session["InstaSharp.AuthInfo"];
-                var userEndpoint = new InstaSharp.Endpoints.Users(config, auth);
-                var me = await userEndpoint.GetSelf();
-                bio = new Bio()
-                {
-                    Bio = me.Data.Bio,
-                    Counts = me.Data.Counts,
-                    FullName = me.Data.FullName,
-                    Id = me.Data.Id,
-                    ProfilePicture = me.Data.ProfilePicture,
-                    Username = me.Data.Username,
-                    Website = me.Data.Website
-                };
+                //bio = await GetBio(bio);
             }
 
             return PartialView(bio);
+        }
+
+        private async Task<Bio> GetBio()
+        {
+            var auth = (OAuthResponse)Session["InstaSharp.AuthInfo"];
+            var userEndpoint = new InstaSharp.Endpoints.Users(config, auth);
+            var me = await userEndpoint.GetSelf();
+            var bio = new Bio()
+            {
+                Bio = me.Data.Bio,
+                Counts = me.Data.Counts,
+                FullName = me.Data.FullName,
+                Id = me.Data.Id,
+                ProfilePicture = me.Data.ProfilePicture,
+                Username = me.Data.Username,
+                Website = me.Data.Website
+            };
+            return bio;
         }
 
         public async Task<ActionResult> _MyMedia()
@@ -81,34 +92,41 @@ namespace InstagramAPIApp.Controllers
             }
             else
             {
-                var auth = (OAuthResponse)Session["InstaSharp.AuthInfo"];
-                var userEndpoint = new InstaSharp.Endpoints.Users(config, auth);
-                var myMedia = await userEndpoint.RecentSelf();
-                foreach (var media in myMedia.Data)
-                {
-                    mediaList.Add(new Media()
-                    {
-                        Id = media.Id,
-                        Attribution = media.Attribution,
-                        Caption = media.Caption,
-                        Comments = media.Comments,
-                        CreatedTime = media.CreatedTime,
-                        Filter = media.Filter,
-                        Images = media.Images,
-                        Likes = media.Likes,
-                        Link = media.Link,
-                        Location = media.Location,
-                        Tags =  media.Tags,
-                        Type = media.Type,
-                        User = media.User,
-                        UserHasLiked = media.UserHasLiked,
-                        UsersInPhoto = media.UsersInPhoto,
-                        Videos = media.Videos
-                    });
-                }
+                //await GetMedia(mediaList);
             }
 
             return PartialView(mediaList);
+        }
+
+        private async Task<List<Media>> GetMedia()
+        {
+            var auth = (OAuthResponse)Session["InstaSharp.AuthInfo"];
+            var userEndpoint = new InstaSharp.Endpoints.Users(config, auth);
+            var myMedia = await userEndpoint.RecentSelf();
+            var mediaList = new List<Media>();
+            foreach (var media in myMedia.Data)
+            {
+                mediaList.Add(new Media()
+                {
+                    Id = media.Id,
+                    Attribution = media.Attribution,
+                    Caption = media.Caption,
+                    Comments = media.Comments,
+                    CreatedTime = media.CreatedTime,
+                    Filter = media.Filter,
+                    Images = media.Images,
+                    Likes = media.Likes,
+                    Link = media.Link,
+                    Location = media.Location,
+                    Tags = media.Tags,
+                    Type = media.Type,
+                    User = media.User,
+                    UserHasLiked = media.UserHasLiked,
+                    UsersInPhoto = media.UsersInPhoto,
+                    Videos = media.Videos
+                });
+            }
+            return mediaList;
         }
 
         [Authorize()]
