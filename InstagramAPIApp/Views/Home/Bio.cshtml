@@ -8,64 +8,49 @@
     userBioAndMedia = @Html.Raw(Json.Encode(Model));
 </script>
 
-@*<div flex>
-    <p id="yourContainer">
-        <div id="partialContentsx" data-url="/home/_mybio">
-            <spinner></spinner>
-        </div>
-</div>*@
-
 <div flex layout-fill>
     testes please<h1>shutup</h1>
     <div layout="column" layout-fill>
         <div ng-app="myApp">
             <div ng-controller="GridCtrl as appCtrl">
-                @*<div id="partialContents" data-url="/home/_mymedia">
-                    </div>*@
-                <md-grid-list md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
-                              md-row-height-gt-md="1:1" md-row-height="4:3"
-                              md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+                @*<md-grid-list md-cols-gt-md="6" md-cols-sm="2" md-cols-md="3"
+                              md-row-height-gt-md="4:6"  md-row-height="4:6"
+                              md-gutter-gt-md="2px" md-gutter-gt-sm="8px" md-gutter="4px">
                     <md-grid-tile ng-repeat="tile in appCtrl.colorTiles"
-                                  ng-style="{
+                                  @ *ng-style="{
               'background': tile.color
             }"
                                   md-colspan-gt-sm="{{tile.colspan}}"
-                                  md-rowspan-gt-sm="{{tile.rowspan}}">
-                        <img src="{{tile.url}}" class="md-card-image" alt="{{tile.altText}}">
+                                  md-rowspan-gt-sm="{{tile.rowspan}}"* @
+                                  >
+                        
+                        <md-card>
+                            <img src="{{tile.url}}" class="md-card-image" alt="{{tile.caption}}">
+                            <md-card-content>
+                                
+                                <p>{{tile.likes}} + {{tile.comments}}</p>
+                            </md-card-content>
+                            <md-card-footer>
+                                {{tile.caption}}
+                            </md-card-footer>
+                        </md-card>
                     </md-grid-tile>
+                </md-grid-list>*@
 
-                    @*<md-grid-tile ng-repeat="tile in appCtrl.colorTiles" ng-style="{
-              'background': tile.color
-            }"
-                                  md-colspan-gt-sm="{{tile.colspan}}"
-                                  md-rowspan-gt-sm="{{tile.rowspan}}">
-                        <img src={{tile.url}} class="md-card-image" alt={{tile.altText}}>
-                    </md-grid-tile>*@
-                </md-grid-list>
+                        <div class="parent" layout="column" ng-repeat="tile in appCtrl.colorTiles" flex>
+                            <md-card>
+                                <img src="{{tile.url}}" class="md-card-image" alt="{{tile.caption}}">
+                                <md-card-content>
+
+                                    <p>{{tile.likes}} + {{tile.comments}}</p>
+                                </md-card-content>
+                                <md-card-footer>
+                                    {{tile.caption}}
+                                </md-card-footer>
+                            </md-card>
+                        </div>
             </div>
 
         </div>
     </div>
 </div>
-
-@*<div flex>
-        <p id="yourContainer">
-            <div class="partialContents" data-url="/home/_mymedia">
-                <spinner></spinner>
-            </div>
-        </p>
-    </div>*@
-@section scripts{
-    <script>
-
-        $(document).ready(function (e) {
-            $("#partialContents").each(function (index, item) {
-                var url = $(item).data("url");
-                if (url && url.length > 0) {
-                    $(item).load(url);
-                }
-
-            });
-        })
-    </script>
-}

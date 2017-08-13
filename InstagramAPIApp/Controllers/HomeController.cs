@@ -38,7 +38,7 @@ namespace InstagramAPIApp.Controllers
             var userBioAndMedia = new UserMediaAndBio();
             if (Session["InstaSharp.AuthInfo"] == null)
             {
-                ViewBag.Message = "Please log in";
+                Redirect("Login");
             }
             else
             {

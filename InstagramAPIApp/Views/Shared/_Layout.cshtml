@@ -12,23 +12,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 </head>
 <body>
-    @*<div ng-app="myApp">
-        <div ng-controller="GridCtrl as appCtrl">
-                <md-grid-list md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
-                              md-row-height-gt-md="1:1" md-row-height="4:3"
-                              md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
-                    <md-grid-tile ng-repeat="tile in appCtrl.colorTiles"
-                                  ng-style="{
-            'background': tile.color
-          }"
-                                  md-colspan-gt-sm="{{tile.colspan}}"
-                                  md-rowspan-gt-sm="{{tile.rowspan}}">
-                    </md-grid-tile>
-                </md-grid-list>
-        </div>
-
-        </div>*@
-    
     <div ng-app="myApp" ng-controller="myCtrl" ng-cloak>
         <div layout="column">
             <md-toolbar>
@@ -47,13 +30,17 @@
                         md-whiteframe="4">
 
                 <md-toolbar class="md-theme-indigo">
-                    <h1 class="md-toolbar-tools">Sidenav Left</h1>
+                    <h1 class="md-toolbar-tools">{{username}}</h1>
+                    <div class="md-media-sm card-media">
+                        <img src="{{profilePic}}" class="md-avatar" alt="{{username}}" ng-style="avatar_style"/>
+                    </div>
                 </md-toolbar>
                 <md-content layout-padding ng-controller="LeftCtrl">
                     <md-button ng-click="close()" class="md-primary" hide-gt-md>
                         Close Sidenav Left
                     </md-button>
                     <p hide show-gt-md>
+                        
                         <md-button>
                             @Html.ActionLink("Home", "Index", "Home")
                         </md-button>
@@ -79,19 +66,7 @@
                             Toggle left
                         </md-button>
                     </div>
-
-                    @*<div>
-                        <md-button ng-click="toggleRight()"
-                                   ng-hide="isOpenRight()"
-                                   class="md-primary">
-                            Toggle right
-                        </md-button>
-
-                    </div>*@
                     @RenderBody()
-
-
-
                 </div>
 
                 <div flex></div>
@@ -121,43 +96,6 @@
 
         </section>
 
-        @*<div layout="column">
-                <md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="$mdMedia('min-width: 1024px')">
-                    <md-button>
-                        @Html.ActionLink("Home", "Index", "Home")
-                    </md-button>
-                    <md-button>
-                        @Html.ActionLink("About", "About", "Home")
-                    </md-button>
-                    <md-button>
-                        @Html.ActionLink("Contact", "Contact", "Home")
-                    </md-button>
-                    <md-button>
-                        @Html.ActionLink("Login", "Login", "Home")
-                    </md-button>
-                </md-sidenav>
-
-                <md-content>
-                    Center Content
-                    <md-button ng-click="openLeftMenu()">
-                        Open Left Menu
-                    </md-button>
-                </md-content>
-
-
-            </div>*@
-
-        @*<nav>
-                <div class="nav-wrapper light-green">
-                    @Html.ActionLink("Frogroid", "Index", "Home", new { area = "" }, new { @class = "brand-logo center" })
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
-                    </ul>
-                </div>
-            </nav>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
