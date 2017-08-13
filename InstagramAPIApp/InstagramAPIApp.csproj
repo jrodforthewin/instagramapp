@@ -153,6 +153,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bio.cs" />
+    <Compile Include="Models\Followers.cs" />
     <Compile Include="Models\Media.cs" />
     <Compile Include="Models\UserMediaAndBio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -992,6 +993,7 @@
     <Content Include="Views\Home\_MyMedia.cshtml" />
     <Content Include="Views\Home\Bio.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Followers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

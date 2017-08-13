@@ -1,0 +1,9 @@
+﻿@model IEnumerable<InstagramAPIApp.Models.Bio>
+
+@{
+    ViewBag.Title = "Followers";
+}
+
+<script>
+    followers = @Html.Raw(Json.Encode(Model));
+</script>

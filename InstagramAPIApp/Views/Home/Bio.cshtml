@@ -9,42 +9,21 @@
 </script>
 
 <div flex layout-fill>
-    testes please<h1>shutup</h1>
     <div layout="column" layout-fill>
         <div ng-app="myApp">
+            <h1>jrodforthewin</h1>
             <div ng-controller="GridCtrl as appCtrl">
-                @*<md-grid-list md-cols-gt-md="6" md-cols-sm="2" md-cols-md="3"
-                              md-row-height-gt-md="4:6"  md-row-height="4:6"
-                              md-gutter-gt-md="2px" md-gutter-gt-sm="8px" md-gutter="4px">
-                    <md-grid-tile ng-repeat="tile in appCtrl.colorTiles"
-                                  @ *ng-style="{
-              'background': tile.color
-            }"
-                                  md-colspan-gt-sm="{{tile.colspan}}"
-                                  md-rowspan-gt-sm="{{tile.rowspan}}"* @
-                                  >
-                        
-                        <md-card>
-                            <img src="{{tile.url}}" class="md-card-image" alt="{{tile.caption}}">
-                            <md-card-content>
-                                
-                                <p>{{tile.likes}} + {{tile.comments}}</p>
-                            </md-card-content>
-                            <md-card-footer>
-                                {{tile.caption}}
-                            </md-card-footer>
-                        </md-card>
-                    </md-grid-tile>
-                </md-grid-list>*@
-
-                        <div class="parent" layout="column" ng-repeat="tile in appCtrl.colorTiles" flex>
-                            <md-card>
+                        <div layout="row" layout-xs="column" layout-wrap layout-align-gt-xs="center">
+                            <md-card ng-repeat="tile in appCtrl.colorTiles" flex="100" flex-gt-sm="20" ng-style="{'background': tile.color}">
                                 <img src="{{tile.url}}" class="md-card-image" alt="{{tile.caption}}">
                                 <md-card-content>
-
-                                    <p>{{tile.likes}} + {{tile.comments}}</p>
+                                    <md-chips>
+                                        <md-chip>{{tile.likes}}</md-chip>
+                                        <md-chip>{{tile.comments}}</md-chip>
+                                    </md-chips>
+                                    @*<p>{{tile.likes}} {{tile.comments}}</p>*@
                                 </md-card-content>
-                                <md-card-footer>
+                                <md-card-footer layout-align="center start">
                                     {{tile.caption}}
                                 </md-card-footer>
                             </md-card>

@@ -38,12 +38,26 @@ namespace InstagramAPIApp.Controllers
             var userBioAndMedia = new UserMediaAndBio();
             if (Session["InstaSharp.AuthInfo"] == null)
             {
-                Redirect("Login");
+                RedirectToAction("Login");
             }
             else
             {
                 userBioAndMedia.UserMedia = await GetMedia();
                 userBioAndMedia.UserBio = await GetBio();
+            }
+            return View(userBioAndMedia);
+        }
+        public async Task<ActionResult> Followers()
+        {
+            //var bio = new Bio();
+            var userBioAndMedia = new List<Bio>();
+            if (Session["InstaSharp.AuthInfo"] == null)
+            {
+                RedirectToAction("Login");
+            }
+            else
+            {
+                userBioAndMedia = await GetFollowers();
             }
             return View(userBioAndMedia);
         }
@@ -82,6 +96,29 @@ namespace InstagramAPIApp.Controllers
             return bio;
         }
 
+        private async Task<List<Bio>> GetFollowers()
+        {
+            var followers = new List<Bio>();
+            var auth = (OAuthResponse)Session["InstaSharp.AuthInfo"];
+            var relationshipEndpoint = new InstaSharp.Endpoints.Relationships(config, auth);
+            var followedBy = await relationshipEndpoint.FollowedBy();
+
+            foreach (var follower in followedBy.Data)
+            {
+                followers.Add(new Models.Bio()
+                {
+                    Bio = follower.Bio,
+                    Counts = follower.Counts,
+                    FullName = follower.FullName,
+                    Id = follower.Id,
+                    ProfilePicture = follower.ProfilePicture,
+                    Username = follower.Username,
+                    Website = follower.Website
+                });
+            }
+            return followers;
+        }
+
         public async Task<ActionResult> _MyMedia()
         {
             var mediaList = new List<Media>();
@@ -115,7 +152,7 @@ namespace InstagramAPIApp.Controllers
                     CreatedTime = media.CreatedTime,
                     Filter = media.Filter,
                     Images = media.Images,
-                    Likes = media.Likes,
+                    Likes =  media.Likes,
                     Link = media.Link,
                     Location = media.Location,
                     Tags = media.Tags,
@@ -168,9 +205,12 @@ namespace InstagramAPIApp.Controllers
             var scopes = new List<OAuth.Scope>();
             scopes.Add(InstaSharp.OAuth.Scope.Likes);
             scopes.Add(InstaSharp.OAuth.Scope.Comments);
+            scopes.Add(InstaSharp.OAuth.Scope.Basic);
+            scopes.Add(InstaSharp.OAuth.Scope.Follower_List);
+            scopes.Add(InstaSharp.OAuth.Scope.Public_Content);
+            scopes.Add(InstaSharp.OAuth.Scope.Relationships);
 
             var link = InstaSharp.OAuth.AuthLink(config.OAuthUri + "authorize", config.ClientId, config.RedirectUri, scopes, InstaSharp.OAuth.ResponseType.Code);
-
             return Redirect(link);
         }
     }

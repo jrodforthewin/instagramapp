@@ -30,9 +30,13 @@
                         md-whiteframe="4">
 
                 <md-toolbar class="md-theme-indigo">
-                    <h1 class="md-toolbar-tools">{{username}}</h1>
-                    <div class="md-media-sm card-media">
-                        <img src="{{profilePic}}" class="md-avatar" alt="{{username}}" ng-style="avatar_style"/>
+                    <div layout="column" layout-align="center center">
+                        <div flex="50">
+                            <h1 class="md-toolbar-tools" flex="50">{{username}}</h1>
+                        </div>
+                        <div class="md-media-sm card-media" flex="50">
+                            <img src="{{profilePic}}" class="md-avatar" alt="{{username}}" ng-style="avatar_style" />
+                        </div>
                     </div>
                 </md-toolbar>
                 <md-content layout-padding ng-controller="LeftCtrl">
@@ -40,8 +44,14 @@
                         Close Sidenav Left
                     </md-button>
                     <p hide show-gt-md>
-                        
-                        <md-button>
+                        <section layout="row" layout-align="center center" layout-wrap>
+                            <md-button flex="100" href="@Url.Action("Login", "Home")">
+                                Login
+                            </md-button>
+                            <md-button flex="100" ng-href="{{googleUrl}}" target="_blank">Default Link</md-button>
+                            
+                        </section>
+                        @*<md-button>
                             @Html.ActionLink("Home", "Index", "Home")
                         </md-button>
                         <md-button>
@@ -52,7 +62,7 @@
                         </md-button>
                         <md-button href="@Url.Action("Login", "Home")">
                             Login
-                        </md-button>
+                        </md-button>*@
                     </p>
                 </md-content>
 
