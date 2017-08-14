@@ -1,6 +1,7 @@
 ﻿using InstagramAPIApp.Models;
 using InstaSharp;
 using InstaSharp.Models.Responses;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,6 +25,7 @@ namespace InstagramAPIApp.Controllers
             redirectUri = ConfigurationManager.AppSettings["redirect_uri"];
             realtimeUri = "";
             config = new InstagramConfig(clientId, clientSecret, redirectUri, realtimeUri);
+            //https://www.instagram.com/developer/endpoints/relationships/
         }
 
         public ActionResult Index()
@@ -62,27 +64,15 @@ namespace InstagramAPIApp.Controllers
             return View(userBioAndMedia);
         }
 
-        public async Task<ActionResult> _MyBio()
-        {
-            var bio = new Bio();
-            if (Session["InstaSharp.AuthInfo"] == null)
-            {
-                ViewBag.Message = "You are not logged in!";
-                ViewBag.Username = "??";
-            }
-            else
-            {
-                //bio = await GetBio(bio);
-            }
-
-            return PartialView(bio);
-        }
-
         private async Task<Bio> GetBio()
         {
             var auth = (OAuthResponse)Session["InstaSharp.AuthInfo"];
             var userEndpoint = new InstaSharp.Endpoints.Users(config, auth);
             var me = await userEndpoint.GetSelf();
+            var client = new RestClient(" https://api.instagram.com");
+            var request = new RestRequest($"v1/users/self/followed-by?access_token={auth.AccessToken}", Method.GET);
+            //var queryResult = client.Execute<List<Items>>(request).Data;
+            var queryResult = client.Execute(request).Content;
             var bio = new Bio()
             {
                 Bio = me.Data.Bio,
@@ -101,44 +91,31 @@ namespace InstagramAPIApp.Controllers
             var followers = new List<Bio>();
             var auth = (OAuthResponse)Session["InstaSharp.AuthInfo"];
             var relationshipEndpoint = new InstaSharp.Endpoints.Relationships(config, auth);
-            var followedBy = await relationshipEndpoint.FollowedBy();
 
-            foreach (var follower in followedBy.Data)
-            {
-                followers.Add(new Models.Bio()
-                {
-                    Bio = follower.Bio,
-                    Counts = follower.Counts,
-                    FullName = follower.FullName,
-                    Id = follower.Id,
-                    ProfilePicture = follower.ProfilePicture,
-                    Username = follower.Username,
-                    Website = follower.Website
-                });
-            }
+            //RestSharp.
+            var followedBy = await relationshipEndpoint.FollowedByAll();
+
+            //foreach (var follower in followedBy.Data)
+            //{
+            //    followers.Add(new Models.Bio()
+            //    {
+            //        Bio = follower.Bio,
+            //        Counts = follower.Counts,
+            //        FullName = follower.FullName,
+            //        Id = follower.Id,
+            //        ProfilePicture = follower.ProfilePicture,
+            //        Username = follower.Username,
+            //        Website = follower.Website
+            //    });
+            //}
             return followers;
-        }
-
-        public async Task<ActionResult> _MyMedia()
-        {
-            var mediaList = new List<Media>();
-            if (Session["InstaSharp.AuthInfo"] == null)
-            {
-                ViewBag.Message = "You are not logged in!";
-                ViewBag.Username = "??";
-            }
-            else
-            {
-                //await GetMedia(mediaList);
-            }
-
-            return PartialView(mediaList);
         }
 
         private async Task<List<Media>> GetMedia()
         {
             var auth = (OAuthResponse)Session["InstaSharp.AuthInfo"];
             var userEndpoint = new InstaSharp.Endpoints.Users(config, auth);
+           
             var myMedia = await userEndpoint.RecentSelf();
             var mediaList = new List<Media>();
             foreach (var media in myMedia.Data)
@@ -205,7 +182,7 @@ namespace InstagramAPIApp.Controllers
             var scopes = new List<OAuth.Scope>();
             scopes.Add(InstaSharp.OAuth.Scope.Likes);
             scopes.Add(InstaSharp.OAuth.Scope.Comments);
-            scopes.Add(InstaSharp.OAuth.Scope.Basic);
+            //scopes.Add(InstaSharp.OAuth.Scope.Basic);
             scopes.Add(InstaSharp.OAuth.Scope.Follower_List);
             scopes.Add(InstaSharp.OAuth.Scope.Public_Content);
             scopes.Add(InstaSharp.OAuth.Scope.Relationships);
