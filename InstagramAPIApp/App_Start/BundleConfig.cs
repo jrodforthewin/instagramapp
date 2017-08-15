@@ -8,7 +8,7 @@ namespace InstagramAPIApp
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+            bundles.Add(new ScriptBundle("~/Scripts/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -19,32 +19,26 @@ namespace InstagramAPIApp
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-            //          "~/Scripts/bootstrap.js",
-            //          "~/Scripts/respond.js"));
-
-            //bundles.Add(new StyleBundle("~/Content/css").Include(
-            //          "~/Content/bootstrap.css",
-            //          "~/Content/site.css"));
-
-            //bundles.Add(new ScriptBundle("~/bundles/materialize").Include(
-            //          "~/Scripts/materialize/materialize.js"
-            //          ));
-
             bundles.Add(new ScriptBundle("~/Scripts/angularjs").Include(
-                      "~/Scripts/angular.js"
+                      "~/bower_components/angular/angular.js"
+                      ));
+            bundles.Add(new ScriptBundle("~/Scripts/angularFramework").Include(
+                        "~/Scripts/Framework/modules.js",
+                        //"~/Scripts/Framework/configuration.js",
+                        "~/Scripts/Framework/directives.js",
+                        "~/Scripts/Framework/services.js",
+                        "~/Scripts/Framework/maincontroller.js"
                       ));
 
-            bundles.Add(new ScriptBundle("~/bundles/angularFramework").Include(
-                      "~/Framework/maincontroller.js",
-                      "~/Scripts/angular-animate.js",
-                      "~/Scripts/angular-aria.js",
-                      "~/Scripts/angular-messages.js",
-                      "~/Scripts/angular-material.js"
-                      ));
+            bundles.Add(new ScriptBundle("~/Scripts/angularMaterialjs").Include(
+                "~/bower_components/angular-animate/angular-animate.js",
+                "~/bower_components/angular-aria/angular-aria.js",
+                "~/bower_components/angular-messages/angular-messages.js", 
+                "~/bower_components/angular-material/angular-material.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/angular-material.css"
+                      "~/bower_components/angular-material/angular-material.css"
                       //,
                       //"~/Content/site.css"
                       ));

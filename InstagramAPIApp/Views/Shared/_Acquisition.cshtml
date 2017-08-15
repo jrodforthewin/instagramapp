@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Frogroid @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    @Scripts.Render("~/Scripts/angularjs")
+</head>
+<body>
+    <div ng-app="acq" ng-controller="acqCtrl" ng-cloak>
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/angularMaterialjs")
+    <script src="~/Scripts/Framework/modules.js"></script>
+    <script src="~/Scripts/Framework/acquisitionConfiguration.js"></script>
+    <script src="~/Scripts/Framework/acquisitionController.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

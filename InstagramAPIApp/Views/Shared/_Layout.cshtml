@@ -3,13 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/Scripts/angularjs")
-    @Scripts.Render("~/bundles/angularFramework")
-
-
+    <title>Frogroid @ViewBag.Title</title>
+    @*@Styles.Render("~/Content/css")*@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link href="~/bower_components/angular-material/angular-material.css" rel="stylesheet" />
+    @*@Scripts.Render("~/Scripts/angularjs")*@
+    <script src="~/bower_components/angular/angular.min.js"></script>
 </head>
 <body>
     <div ng-app="myApp" ng-controller="myCtrl" ng-cloak>
@@ -45,27 +44,27 @@
                     </md-button>
                     <p hide show-gt-md>
                         <section layout="row" layout-align="center center" layout-wrap>
-                            <md-button flex="100" href="@Url.Action("Login", "Home")">
+                            <md-button flex="100" href="@Url.Action("Login", "Auth")">
                                 Login
                             </md-button>
-                            <md-button flex="100" href="@Url.Action("Followers", "Home")">
+                            <md-button flex="100" href="@Url.Action("Followers", "Bio")">
                                 Follwers
                             </md-button>
                             <md-button flex="100" ng-href="{{googleUrl}}" target="_blank">Default Link</md-button>
-                            
+
                         </section>
                         @*<md-button>
-                            @Html.ActionLink("Home", "Index", "Home")
-                        </md-button>
-                        <md-button>
-                            @Html.ActionLink("About", "About", "Home")
-                        </md-button>
-                        <md-button>
-                            @Html.ActionLink("Contact", "Contact", "Home")
-                        </md-button>
-                        <md-button href="@Url.Action("Login", "Home")">
-                            Login
-                        </md-button>*@
+                                @Html.ActionLink("Home", "Index", "Home")
+                            </md-button>
+                            <md-button>
+                                @Html.ActionLink("About", "About", "Home")
+                            </md-button>
+                            <md-button>
+                                @Html.ActionLink("Contact", "Contact", "Home")
+                            </md-button>
+                            <md-button href="@Url.Action("Login", "Home")">
+                                Login
+                            </md-button>*@
                     </p>
                 </md-content>
 
@@ -83,35 +82,45 @@
                 </div>
 
                 <div flex></div>
-                
+
 
             </md-content>
 
             @*<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
 
-                <md-toolbar class="md-theme-light">
-                    <h1 class="md-toolbar-tools">Sidenav Right</h1>
-                </md-toolbar>
-                <md-content ng-controller="RightCtrl" layout-padding>
-                    <form>
-                        <md-input-container>
-                            <label for="testInput">Test input</label>
-                            <input type="text" id="testInput"
-                                   ng-model="data" md-autofocus>
-                        </md-input-container>
-                    </form>
-                    <md-button ng-click="close()" class="md-primary">
-                        Close Sidenav Right
-                    </md-button>
-                </md-content>
+                    <md-toolbar class="md-theme-light">
+                        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+                    </md-toolbar>
+                    <md-content ng-controller="RightCtrl" layout-padding>
+                        <form>
+                            <md-input-container>
+                                <label for="testInput">Test input</label>
+                                <input type="text" id="testInput"
+                                       ng-model="data" md-autofocus>
+                            </md-input-container>
+                        </form>
+                        <md-button ng-click="close()" class="md-primary">
+                            Close Sidenav Right
+                        </md-button>
+                    </md-content>
 
-            </md-sidenav>*@
+                </md-sidenav>*@
 
         </section>
 
     </div>
+    @Scripts.Render("~/Scripts/jquery")
 
-    @Scripts.Render("~/bundles/jquery")
+    <script src="~/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="~/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="~/bower_components/angular-messages/angular-messages.js"></script>
+    <script src="~/bower_components/angular-material/angular-material.min.js"></script>
+    @*@Scripts.Render("~/Scripts/angularFramework")*@
+    <script src="~/Scripts/Framework/modules.js"></script>
+    <script src="~/Scripts/Framework/configuration.js"></script>
+    <script src="~/Scripts/Framework/directives.js"></script>
+    <script src="~/Scripts/Framework/services.js"></script>
+    <script src="~/Scripts/Framework/maincontroller.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
