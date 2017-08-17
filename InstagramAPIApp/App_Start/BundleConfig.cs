@@ -10,6 +10,11 @@ namespace InstagramAPIApp
         {
             bundles.Add(new ScriptBundle("~/Scripts/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/jqueryOwl").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/owl.carousel.js",
+                        "~/Scripts/materialize/materialize.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -20,28 +25,39 @@ namespace InstagramAPIApp
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/Scripts/angularjs").Include(
-                      "~/bower_components/angular/angular.js"
+                      "~/Scripts/angular.js",
+                      "~/Scripts/angular-animate.js",
+                      "~/Scripts/angular-aria.js",
+                      "~/Scripts/angular-messages.js",
+                      "~/Scripts/angular-material.js"
                       ));
-            bundles.Add(new ScriptBundle("~/Scripts/angularFramework").Include(
-                        "~/Scripts/Framework/modules.js",
-                        //"~/Scripts/Framework/configuration.js",
-                        "~/Scripts/Framework/directives.js",
-                        "~/Scripts/Framework/services.js",
-                        "~/Scripts/Framework/maincontroller.js"
-                      ));
+            bundles.Add(new ScriptBundle("~/bundles/acqcontroller").Include(
+                     "~/Framework/modules/main.js",
+                     "~/Framework/configurations/acquisition.config.js",
+                     //"~/Framework/services/main.js",
+                     //"~/Framework/directives/main.directives.js",
+                     "~/Framework/controllers/acq.controller.js"
+                     ));
 
-            bundles.Add(new ScriptBundle("~/Scripts/angularMaterialjs").Include(
-                "~/bower_components/angular-animate/angular-animate.js",
-                "~/bower_components/angular-aria/angular-aria.js",
-                "~/bower_components/angular-messages/angular-messages.js", 
-                "~/bower_components/angular-material/angular-material.js"
-                ));
+            bundles.Add(new ScriptBundle("~/bundles/maincontroller").Include(
+                     "~/Framework/modules/main.js",
+                     "~/Framework/configurations/main.config.js",
+                     "~/Framework/services/main.js",
+                     "~/Framework/directives/main.directives.js",
+                     "~/Framework/controllers/main.controller.js"
+                     ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/bower_components/angular-material/angular-material.css"
+                      "~/Content/angular-material/angular-material.css"
                       //,
                       //"~/Content/site.css"
                       ));
+            bundles.Add(new StyleBundle("~/Content/cssOwl").Include(
+                     "~/Content/angular-material/angular-material.css",
+                     "~/Content/owl.carousel.css",
+                     "~/Content/materialize/css/materialize.css",
+                     "~/Content/site.css"
+                     ));
         }
     }
 }
