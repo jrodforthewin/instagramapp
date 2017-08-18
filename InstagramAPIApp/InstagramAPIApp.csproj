@@ -172,6 +172,10 @@
     <Content Include="Content\materialize\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="Content\owl.carousel.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Images\frog-leg-print.png" />
+    <Content Include="Images\frog-leg-print24x24.png" />
+    <Content Include="Images\frog-leg-print32x32.png" />
+    <Content Include="Images\frog-leg-print64x64.png" />
     <Content Include="Images\froggies.jpg" />
     <Content Include="Images\froggy.jpg" />
     <Content Include="Framework\configurations\acquisition.config.js" />
