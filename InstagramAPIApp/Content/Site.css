@@ -1,4 +1,9 @@
-﻿body {
+﻿@font-face {
+    font-family: froggyFont;
+    src: url('../Fonts/gutesWshlechtesw/gutesWschlechtesW.ttf');
+}
+
+body {
     padding-bottom: 20px;
     height:100%;
 }
@@ -51,3 +56,12 @@ section.large {
     margin: 0 auto;
 }
 
+
+.froggy-text {
+    font-family: froggyFont;
+}
+
+.froggy-background{
+    background-image: url('/Images/frog logo background.png');
+    background-repeat: repeat;
+}

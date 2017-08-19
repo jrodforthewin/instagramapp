@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frogroid @ViewBag.Title</title>
+    <link rel="icon" href="~/Images/frog logo16x16.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     @Styles.Render("~/Content/css")
 </head>
@@ -13,7 +14,7 @@
             <md-toolbar>
 
                 <div class="md-toolbar-tools">
-                    <h2 md-truncate flex>Frogroid</h2>
+                    <h2 md-truncate flex class="froggy-text"><img src="~/Images/frog-leg-print32x32.png" />Frogroid</h2>
                 </div>
 
             </md-toolbar>
@@ -75,7 +76,9 @@
                             Toggle left
                         </md-button>
                     </div>
-                    @RenderBody()
+                    <div class="froggy-background">
+                        @RenderBody()
+                    </div>
                 </div>
 
                 <div flex></div>

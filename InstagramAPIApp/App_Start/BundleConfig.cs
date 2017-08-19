@@ -49,8 +49,8 @@ namespace InstagramAPIApp
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/angular-material/angular-material.css"
-                      //,
-                      //"~/Content/site.css"
+                      ,
+                      "~/Content/site.css"
                       ));
             bundles.Add(new StyleBundle("~/Content/cssOwl").Include(
                      "~/Content/angular-material/angular-material.css",

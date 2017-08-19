@@ -172,6 +172,14 @@
     <Content Include="Content\materialize\font\material-design-icons\Material-Design-Icons.svg" />
     <Content Include="Content\owl.carousel.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Fonts\gutesWshlechtesw\gutesWschlechtesW.gif" />
+    <Content Include="Fonts\gutesWshlechtesw\ReadmeD.txt" />
+    <Content Include="Fonts\gutesWshlechtesw\ReadmeUS UK.txt" />
+    <Content Include="Images\frog logo background.png" />
+    <Content Include="Images\frog logo1.png" />
+    <Content Include="Images\frog logo16x16.png" />
+    <Content Include="Images\frog logov3.png" />
+    <Content Include="Images\frog logo_inverse.png" />
     <Content Include="Images\frog-leg-print.png" />
     <Content Include="Images\frog-leg-print24x24.png" />
     <Content Include="Images\frog-leg-print32x32.png" />
@@ -268,6 +276,10 @@
     <Content Include="Content\materialize\fonts\roboto\Roboto-Bold.woff" />
     <Content Include="Content\materialize\fonts\roboto\Roboto-Bold.ttf" />
     <Content Include="Content\materialize\fonts\roboto\Roboto-Bold.eot" />
+    <Content Include="Fonts\gutesWshlechtesw\gutesWschlechtesW.ttf" />
+    <Content Include="Images\frog logo.psd" />
+    <Content Include="Images\frog logov2.psd" />
+    <Content Include="Images\frog logo background.psd" />
     <None Include="Properties\PublishProfiles\InstagramAPIApp20170815043236 - Web Deploy.pubxml" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
