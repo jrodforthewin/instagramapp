@@ -41,16 +41,7 @@ section.large {
     height: 400px;
 }
 
-@media screen and (max-width: 600px) {
-    .content {
-        width: 100%;
-    }
 
-    article.card-panel {
-        width: 100% !important;
-        margin: 20px 0;
-    }
-}
 
 .content {
     margin: 0 auto;
@@ -64,4 +55,37 @@ section.large {
 .froggy-background{
     background-image: url('/Images/frog logo background.png');
     background-repeat: repeat;
+}
+
+.froggy-image {
+    width:224px;
+    height:255px;
+    background-image: url('../Images/frog logov3.png');
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 600px) {
+    .content {
+        width: 100%;
+    }
+
+    section.large {
+        height: 477px;
+        text-align: center;
+        background-color: #a83bc9 !important;
+    }
+
+    .froggy-image {
+        width: 118px;
+        height: 105px;
+        background-image: url('../Images/frog logo mobile.png');
+        background-repeat: no-repeat;
+        background-color: #a83bc9;
+        background-position: center;    
+    }
+
+    article.card-panel {
+        width: 100% !important;
+        margin: 20px 0;
+    }
 }
